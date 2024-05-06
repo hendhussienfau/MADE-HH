@@ -56,7 +56,7 @@ pipeline AirportsPipeline {
 			
 	}
 
-	// Load the table into a sqlite file.
+	// Load the table into a sqlite file
 	block AirportsLoader oftype SQLiteLoader {
 		table: "airports";
 		file: "./airports.sqlite";
