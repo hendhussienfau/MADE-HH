@@ -1,0 +1,64 @@
+// SPDX-FileCopyrightText: 2023 Friedrich-Alexander-Universitat Erlangen-Nurnberg
+//
+// SPDX-License-Identifier: AGPL-3.0-only
+
+  
+
+// This Jayvee model describes a pipeline 
+// from a CSV file in the web 
+// to a SQLite file sink.
+pipeline AirportsPipeline {
+
+	// Pipe connecting the block AirportsExtractor
+	// with the block AirportsTextFileInterpreter.
+	AirportsExtractor -> AirportsTextFileInterpreter;
+
+
+	AirportsTextFileInterpreter
+		-> AirportsCSVInterpreter 
+	   	-> AirportsTableInterpreter
+		-> AirportsLoader;
+
+
+	
+	block AirportsExtractor oftype HttpExtractor {
+
+		// Specify the URL where the file shall be downloaded from.
+		url: "https://opendata.rhein-kreis-neuss.de/api/explore/v2.1/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv?lang=en&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B";
+	}
+
+
+	block AirportsTextFileInterpreter oftype TextFileInterpreter { }
+
+	block AirportsCSVInterpreter oftype CSVInterpreter {
+		 delimiter: ";";
+	}
+
+
+	// Interpret the sheet as a table by adding structure.
+	// Define a valuetype per column that specifies the data type of the column.
+	block AirportsTableInterpreter oftype TableInterpreter {
+		header: true;
+		columns: [
+			"Lfd. Nummer" oftype text,
+			"Name des Flughafens" oftype text,
+			"Ort"  oftype text,
+			"Land" oftype text,
+			"IATA" oftype text,
+			"ICAO" oftype text,
+			"Latitude" oftype decimal,
+			"Longitude" oftype decimal,
+			"Altitude" oftype integer,
+			"Zeitzone" oftype decimal,
+			"DST" oftype text,
+			"Zeitzonen-Datenbank" oftype text,
+			"geo_punkt" oftype text ];
+			
+	}
+
+	// Load the table into a sqlite file
+	block AirportsLoader oftype SQLiteLoader {
+		table: "airports";
+		file: "./airports.sqlite";
+	}
+}
