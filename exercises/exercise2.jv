@@ -15,7 +15,8 @@ pipeline TreesPipeline {
 
 
 	TreesTextFileInterpreter
-		-> TreesCSVInterpreter 
+		-> TreesCSVInterpreter
+		-> TreeColumnDeleter
 	   	-> TreesTableInterpreter
 		-> TreesLoader;
 
@@ -24,7 +25,7 @@ pipeline TreesPipeline {
 	block TreesExtractor oftype HttpExtractor {
 
 		// Specify the URL where the file shall be downloaded from.
-		url: " https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv";
+		url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv";
 	}
 
 
@@ -37,13 +38,13 @@ pipeline TreesPipeline {
 
 	// Interpret the sheet as a table by adding structure.
 	// Define a valuetype per column that specifies the data type of the column.
-// lfd_nr;stadtteil;standort;baumart_botanisch;baumart_deutsch;id;baumfamilie
-// 23135;Furth-Nord;Kaarster Str. 169;Acer campestre 'Elsrijk';Ahorn
+    // lfd_nr;stadtteil;standort;baumart_botanisch;baumart_deutsch;id;baumfamilie
+
 	block TreesTableInterpreter oftype TableInterpreter {
 		header: true;
 		columns: [
 			"lfd_nr" oftype text,
-			"stadtteil" oftype text,
+			"stadtteil" oftype CityType,
 			"standort"  oftype text,
 			"baumart_botanisch" oftype text,
 			"baumart_deutsch" oftype text,
@@ -52,8 +53,12 @@ pipeline TreesPipeline {
 			
 	}
 
-	// Load the table into a sqlite file
-	block TreesLoader oftype SQLiteLoader {
+block TreeColumnDeleter oftype ColumnDeleter {
+   delete: [column E];
+ }
+
+// Load the table into a sqlite file
+block TreesLoader oftype SQLiteLoader {
 		table: "trees";
 		file: "./trees.sqlite";
 	}
@@ -64,13 +69,17 @@ valuetype GeoPointType oftype text {
         GeoPointConstraint,
     ];
 }
+
+valuetype CityType oftype text {
+    //  Valuetypes can be further refined by providing constraints.
+    constraints: [
+        CityConstraint,
+    ];
+}
 constraint GeoPointConstraint oftype RegexConstraint {
-   regex: ^\d{1,3}\.\d+,\s*\d{1,3}\.\d+$;
+   regex: /^(?:\d{1,3}\.\d+,\s?){1}\d{1,3}\.\d+$/;
  }
 
-// This constraint works on text valuetypes and requires values 
-// to match a given regular expression in order to be valid.
-
-constraint OnlyCapitalLettersAndDigits on text:
-    value matches /^[A-Z0-9]*$/;
-
+constraint CityConstraint oftype RegexConstraint {
+   regex: /^Furth/;
+ }
