@@ -44,6 +44,15 @@ The dataset describes the share of trips taken by train within a tourism destina
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
+1. Collection of data sources and evaluating data quality
+2. Extraction of data into Jayvee pipeline
+3. Cleaning and transfroming the data
+4. Analyzing
+
+
+
+
+
 1. Example Issue [#1][i1]
 2. ...
 
