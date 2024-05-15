@@ -2,28 +2,43 @@
 
 ## Title
 <!-- Give your project a short title. -->
-Awesome MADE project.
+The Relationship Between Train Usage and Greenhouse Gas Emissions in EU Tourism Ecosystems
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Does writing an example question help students write better project plans?
+Do EU regions with higher train usage exhibit lower the amount of greenhouse gas (GHG) emissions produced by the tourism ecosystem in relation to the total GHG emissions reported by that region? 
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
 XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
-
+Analyzing the correlation between the use of public railway in torrist activities and greenhouse gas emissions in EU regions' tourism ecosystems is essential for understanding the potential impact of sustainable transportation on environmental sustainability. 
+This project employs Javyee datapiplines and open data sources and implementing robust data pipelines to gather and process information on train usage, tourism statistics, and GHG emissions. 
+The results of this analysis can provide insights into the effectiveness of sustainable transit solutions in reducing the carbon footprint of tourism activities. 
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: ExampleSource
-* Metadata URL: https://mobilithek.info/offers/-6901989592576801458
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
+### Datasource1: Greenhouse gas emissions by source sector
+* Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/env_air_gge_esms.htm]
+* Data URL: [https://ec.europa.eu/eurostat/databrowser/view/ENV_AIR_GGE__custom_1313758/bookmark/table?lang=en&bookmarkId=1188f0ad-38e0-46c7-b2ce-5159b0ddfc8e]
+* Data Type:Spreadsheets XLSX
+
+This dataset provides indicator of the measured man-made greenhouse gas (GHG) emissions as well as GHG removals, The net GHG emissions include international aviation. The data are submitted annually by Member States to the EU and the United Nations Framework Convention on Climate Change (UNFCCC). The European Environment Agency (EEA) compiles the EU aggregate data and publishes data for the EU and all Member States. 
+
+### Datasource2: Tourism GHG intensity
+* Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/env_ac_ainah_r2_sims.htm]
+* Data URL: [https://ec.europa.eu/eurostat/web/products-datasets/-/env_ac_ainah_r2]
 * Data Type: CSV
 
-Short description of the DataSource.
+This dataset provides indicator of the measured amount of greenhouse gas (GHG) emissions produced by the tourism ecosystem per Million Euro of Gross Value Added (GVA) in the tourism sector
+
+### Datasource3: Share of trips by train
+* Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/tour_dem_esms.htm]
+* Data URL: [(https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=742&ts=TOURISM&nutslevel=0&nutsversion=-1&nutslevel=9&format=ods)]
+* Data Type: CSV
+The dataset describes the share of trips taken by train within a tourism destination in the EU. The indicator is obtained dividing the number of trips by train by the number of trips done using all means of transport, i.e.: Air, land, railways, buses, coahes, motor vehicles, waterway, other. Higher values indicate a more widespread use of the train for domestic travel compared to other modes of transport with a higher environmental impact. 
 
 ## Work Packages
 
