@@ -12,7 +12,6 @@ Do EU regions with higher train usage exhibit lower the amount of greenhouse gas
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
 Analyzing the correlation between the use of public railway in torrist activities and greenhouse gas emissions in EU regions' tourism ecosystems is essential for understanding the potential impact of sustainable transportation on environmental sustainability. 
 This project employs Javyee datapiplines and open data sources and implementing robust data pipelines to gather and process information on train usage, tourism statistics, and GHG emissions. 
 The results of this analysis can provide insights into the effectiveness of sustainable transit solutions in reducing the carbon footprint of tourism activities. 
