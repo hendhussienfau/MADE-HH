@@ -43,8 +43,8 @@ The dataset describes the share of trips taken by train within a tourism destina
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Collection of data sources and evaluating data quality [https://github.com/hendhussienfau/MADE-HH/issues/1#issue-2312758684]
-2. Extraction of data into Jayvee pipeline [https://github.com/hendhussienfau/MADE-HH/issues/2#issue-2312761591]
+1. Collection of data sources and evaluating data quality [https://github.com/hendhussienfau/MADE-HH/issues/1]
+2. Extraction of data into Jayvee pipeline [https://github.com/hendhussienfau/MADE-HH/issues/2]
 3. Cleaning and transfroming the data
 4. Analyzing
 
