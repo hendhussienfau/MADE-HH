@@ -1,0 +1,92 @@
+pipeline GHGfsPipeline {
+
+    // 2. The origin for multiple pipe sequences is a zip
+    // file. Each csv file in this zip is further processed 
+    // by its own sequence of blocks and pipes.
+
+    GHGTourExtractor
+        -> GHGTourTextFileInterpreter
+        -> GHGTourCSVInterpreter
+        -> GHGTourTableInterpreter
+        -> GHGTourLoader; 
+
+TrainTripsExtractor
+        -> TrainTripsTextFileInterpreter
+        -> TrainTripsCSVInterpreter
+        -> TrainTripsTableInterpreter
+        -> TrainTripsLoader; 
+
+block GHGTourExtractor oftype HttpExtractor {
+
+		// Specify the URL where the file shall be downloaded from.
+		url: "https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=740&nutslevel=0&ts=TOURISM&nutsversion=-1&mpx=1&nutslevel=9&format=csv";
+        //https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=742&ts=TOURISM&nutslevel=0&nutsversion=-1&nutslevel=9&format=ods
+	}
+
+
+	block GHGTourTextFileInterpreter oftype TextFileInterpreter { }
+
+	block GHGTourCSVInterpreter oftype CSVInterpreter {
+		 delimiter: ",";
+	}
+
+
+    block GHGTourTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns:[
+            // VERSIONS,LEVEL_ID,TERRITORY_ID,NAME_HTML,YEAR,DATE,UNIT,VALUE
+            //2016,0,AT,Austria,2019,2019,CO2EUR,29.00
+            "VERSIONS" oftype text, 
+            "LEVEL_ID" oftype text,
+            "TERRITORY_ID" oftype text,
+            "NAME_HTML" oftype text,
+            "YEAR" oftype text, 
+            "DATE" oftype text,
+            "UNIT" oftype text,
+            "VALUE" oftype decimal, 
+        ];
+    }
+    block GHGTourLoader oftype SQLiteLoader {
+        table: "GHGTour";
+        file: "./GHGTour.sqlite";
+    }
+
+
+
+block TrainTripsExtractor oftype HttpExtractor {
+
+		// Specify the URL where the file shall be downloaded from.
+		url: "https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=742&ts=TOURISM&nutslevel=0&nutsversion=-1&nutslevel=9&format=ods";
+        //
+	}
+
+
+	block TrainTripsTextFileInterpreter oftype TextFileInterpreter { }
+
+	block TrainTripsCSVInterpreter oftype CSVInterpreter {
+		 delimiter: ",";
+	}
+
+
+    block TrainTripsTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns:[
+            // TERRITORY_ID,LEVEL_ID,NAME_HTML,UNIT,VERSIONS,2019,2020,2021,2022
+            // AT,0,Austria,PERC,2016,0.16,0.13,0.14,0.20
+            "TERRITORY_ID" oftype text,
+            "LEVEL_ID" oftype text,
+            "NAME_HTML" oftype text,
+            "UNIT" oftype text,
+            "VERSIONS" oftype text,
+            "2019" oftype decimal,
+            "2020" oftype decimal, 
+            "2021" oftype decimal, 
+            "2022" oftype decimal, 
+        ];
+    }
+    block TrainTripsLoader oftype SQLiteLoader {
+        table: "TrainTrips";
+        file: "./TrainTrips.sqlite";
+    }
+
+ }
