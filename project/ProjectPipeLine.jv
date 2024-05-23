@@ -1,0 +1,74 @@
+// SPDX-FileCopyrightText: 2023 Friedrich-Alexander-Universitat Erlangen-Nurnberg
+//
+// SPDX-License-Identifier: AGPL-3.0-only
+
+// Example 1: LightTrapping
+// Learning goals:
+// - Understand how to work with XLSX files and workbooks
+
+// 1. This Jayvee model describes a pipeline 
+// from a XLSX file with multiple Sheets in the web 
+// to a SQLite file sink.
+pipeline GHGAllSectorsPipeline {
+    // 2. We directly get the xlsx file from the web via the HttpExtractor
+    // The data is provided under CC BY-SA 4.0
+    // Saive, Rebecca (2023). Data supporting the publication:
+    // Light trapping in thin silicon solar cells: a review on fundamentals and technologies.
+    // 4TU.ResearchData. Dataset. https://doi.org/10.4121/14554815.v1
+    block GHGAllSectorsExtractor oftype HttpExtractor {
+        url: "https://ec.europa.eu/eurostat/databrowser-backend/api/query/1.0/LIVE/xlsx/en/download/305d0592-bbcf-45f0-8240-29cf2207bd4e?i";
+    }
+
+    // 3. The incoming file is interpreted as a XLSX file and transformed into a Workbook
+    // Workbooks contain at least 1 Sheet. Every sheet has a unique name. 
+    block GHGAllSectorsTextXLSXInterpreter oftype XLSXInterpreter {
+
+    }
+
+    // 4.1 Here, we pick one sheet with the name 'RefractiveIndexSi GaAs' from the Workbook to use within our pipeline. 
+    // The output type from SheetPicker is Sheet, which was already introduced in the cars example
+    block GHGAllSectorsSheetpicker oftype SheetPicker {
+        sheetName: 'Sheet 3';
+    }
+
+    block NameHeaderWriter oftype CellWriter {
+        at: range A1:L1; 
+        write: ["Geo","2013","","2014","","2015","","2016","", "2017","", "2018"];
+    }
+
+    block   EmptyRowDeleter oftype RowDeleter {
+        delete: [row 2]; 
+     } 
+    block GHGAllSectorsTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "Geo" oftype text,
+            "2013" oftype text,
+            "2014" oftype text,
+            "2015" oftype text,
+            "2016" oftype text,
+            "2017" oftype text,
+            "2018" oftype text,
+            "2019" oftype text,
+            "2020" oftype text,
+            "2021" oftype text,
+        ];
+    }
+
+    block GHGAllSectorsLoader oftype SQLiteLoader {
+        table: "GHGAllSectors";
+        file: "./GHGAllSectors.sqlite";
+    }
+
+    
+
+    GHGAllSectorsExtractor
+        -> GHGAllSectorsTextXLSXInterpreter
+        -> GHGAllSectorsSheetpicker
+        -> NameHeaderWriter
+        -> EmptyRowDeleter
+        -> GHGAllSectorsTableInterpreter
+        -> GHGAllSectorsLoader;
+    
+
+}
