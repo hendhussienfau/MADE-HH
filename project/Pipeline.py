@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[157]:
+# In[1]:
 
 
 #imports
@@ -11,7 +11,7 @@ import os
 import sqlite3
 
 
-# In[158]:
+# In[2]:
 
 
 def read_csv(url):
@@ -24,7 +24,7 @@ def read_csv(url):
     
 
 
-# In[159]:
+# In[3]:
 
 
 def extractblock():
@@ -40,7 +40,7 @@ def extractblock():
     return train_trips_data, tourism_ghg_data, nights_spent_data
 
 
-# In[160]:
+# In[4]:
 
 
 train_trips_data, tourism_ghg_data, nights_spent_data = extractblock()
@@ -48,7 +48,7 @@ print("Description of train_trips_data:")
 print(train_trips_data.describe())
 
 
-# In[161]:
+# In[5]:
 
 
 print(train_trips_data.columns)
@@ -56,10 +56,22 @@ print(train_trips_data.columns)
 print(train_trips_data.info())
 
 
+# In[6]:
+
+
+print(tourism_ghg_data.info())
+
+
+# In[7]:
+
+
+print(nights_spent_data.info())
+
+
 # In[162]:
 
 
-train_trips_data.head()
+.head()
 
 
 # In[163]:
