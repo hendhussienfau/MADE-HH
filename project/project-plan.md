@@ -7,7 +7,9 @@ The Relationship Between Train Usage and Greenhouse Gas Emissions in EU Tourism 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-Do EU regions with higher train usage exhibit lower the amount of greenhouse gas (GHG) emissions produced by the tourism ecosystem in relation to the total GHG emissions reported by that region? 
+How does the utilization of trains as mode of transportation within a tourism destination
+can influence the overall greenhouse gas intensity of the tourism sector within EU countries?
+
 
 ## Description
 
@@ -19,26 +21,23 @@ The results of this analysis can provide insights into the effectiveness of sust
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: Greenhouse gas emissions by source sector
-* Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/env_air_gge_esms.htm]
-* Data URL: [https://ec.europa.eu/eurostat/databrowser/view/ENV_AIR_GGE__custom_1313758/bookmark/table?lang=en&bookmarkId=1188f0ad-38e0-46c7-b2ce-5159b0ddfc8e]
-* Data Type:Spreadsheets XLSX
-
-This dataset provides indicator of the measured man-made greenhouse gas (GHG) emissions as well as GHG removals, The net GHG emissions include international aviation. The data are submitted annually by Member States to the EU and the United Nations Framework Convention on Climate Change (UNFCCC). The European Environment Agency (EEA) compiles the EU aggregate data and publishes data for the EU and all Member States. 
-
-### Datasource2: Tourism GHG intensity
+### Datasource1: Tourism GHG intensity
 * Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/env_ac_ainah_r2_sims.htm]
 * Data URL: [https://ec.europa.eu/eurostat/web/products-datasets/-/env_ac_ainah_r2]
 * Data Type: CSV
 
-This dataset provides indicator of the measured amount of greenhouse gas (GHG) emissions produced by the tourism ecosystem per Million Euro of Gross Value Added (GVA) in the tourism sector
+This dataset contains data on the greenhouse gas (GHG) intensity of the tourism sector, measured as GHG emissions per Million Euro of Gross Value Added (GVA) in the tourism sector. It helps in understanding the environmental impact of tourism activities within European Union countries. 
 
-### Datasource3: Share of trips by train
+### Datasource2: Share of trips by train
 * Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/tour_dem_esms.htm]
 * Data URL: [(https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=742&ts=TOURISM&nutslevel=0&nutsversion=-1&nutslevel=9&format=ods)]
 * Data Type: CSV
 The dataset describes the share of trips taken by train within a tourism destination in the EU. The indicator is obtained dividing the number of trips by train by the number of trips done using all means of transport, i.e.: Air, land, railways, buses, coahes, motor vehicles, waterway, other. Higher values indicate a more widespread use of the train for domestic travel compared to other modes of transport with a higher environmental impact. 
-
+### Datasource3: Tourism Demand expressed by the number of nights spent in tourism destination
+* Metadata URL: [https://ec.europa.eu/eurostat/cache/metadata/en/tour_dem_esms.htm]
+* Data URL: [https://urban.jrc.ec.europa.eu/api/udp/v2/en/data/?databrick_id=764&nutslevel=0&ts=TOURISM&nutsversion=-1&mpx=1&nutslevel=9&format=csv]
+* Data Type: CSV
+This dataset provides information on the total number of nights spent at tourist accommodation establishments in a destination (country or region) by both domestic and foreign tourists. It is provided by EU Tourism as a basic tourism descriptor to provide further context and characterization of the tourism activity of countries as it offers insights into the overall demand for tourism services in a particular destination. This measurement will help to assess the environmental impact of tourism activities within EU countries while accounting for the scale of tourism demand in each destination. Given that the high variance in tourism demand between destination countries can distort the GHG value. 
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
@@ -48,11 +47,3 @@ The dataset describes the share of trips taken by train within a tourism destina
 3. Cleaning and transfroming the data
 4. Analyzing
 
-
-
-
-
-1. Example Issue [#1][i1]
-2. ...
-
-[i1]: https://github.com/jvalue/made-template/issues/1
