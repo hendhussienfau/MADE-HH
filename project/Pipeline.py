@@ -6,8 +6,6 @@
 
 #imports
 import pandas as pd
-import sqlalchemy as sql
-import os
 import sqlite3
 
 
@@ -51,15 +49,15 @@ print(train_trips_data.describe())
 # In[5]:
 
 
-print(train_trips_data.columns)
-
-print(train_trips_data.info())
+print(tourism_ghg_data.info())
 
 
 # In[6]:
 
 
-print(tourism_ghg_data.info())
+print(train_trips_data.columns)
+
+print(train_trips_data.info())
 
 
 # In[7]:
@@ -68,13 +66,13 @@ print(tourism_ghg_data.info())
 print(nights_spent_data.info())
 
 
-# In[162]:
+# In[ ]:
 
 
-.head()
 
 
-# In[163]:
+
+# In[8]:
 
 
 def transform_train_trips(train_trips_data):
@@ -111,7 +109,7 @@ def transform_train_trips(train_trips_data):
     return train_trips_data_transformed
 
 
-# In[164]:
+# In[9]:
 
 
 def transform_tourism_ghg(tourism_ghg_data):
@@ -131,7 +129,7 @@ def transform_tourism_ghg(tourism_ghg_data):
     return tourism_ghg_transformed
 
 
-# In[165]:
+# In[10]:
 
 
 def transform_nights_spent(nights_spent_data):
@@ -151,7 +149,7 @@ def transform_nights_spent(nights_spent_data):
     return nights_spent_transformed
 
 
-# In[166]:
+# In[11]:
 
 
 def integrate_data(train_trips_data_transformed, tourism_ghg_transformed, nights_spent_transformed):
@@ -165,7 +163,7 @@ def integrate_data(train_trips_data_transformed, tourism_ghg_transformed, nights
     return merged_data
 
 
-# In[167]:
+# In[12]:
 
 
 train_trips_data, tourism_ghg_data, nights_spent_data = extractblock()
@@ -175,45 +173,34 @@ nights_spent_transformed = transform_nights_spent(nights_spent_data)
 print(train_trips_data_transformed)
 
 
-# In[168]:
+# In[13]:
 
 
 print(tourism_ghg_transformed)
 
 
-# In[169]:
+# In[14]:
 
 
 print(nights_spent_transformed)
 
 
-# In[170]:
+# In[15]:
 
 
 merged_data = integrate_data(train_trips_data_transformed, tourism_ghg_transformed, nights_spent_transformed)
 
-# Display the merged data
 print(merged_data)
 
 
-# In[171]:
-
-
-def create_sqlite_database_in_current_dir(file_name):
-    current_dir = os.getcwd()
-    file_path = os.path.join(current_dir, file_name)
-    conn = sqlite3.connect(file_path)
-    conn.close()  
-
-
-# In[172]:
+# In[16]:
 
 
 def save_to_sqlite(df, table_name , db_url):
     df.to_sql(table_name, db_url, if_exists='replace', index=False) 
 
 
-# In[173]:
+# In[17]:
 
 
 from tabulate import tabulate
@@ -224,26 +211,12 @@ def read_from_sqlite(table_name, db_url):
 
 
 
-# In[174]:
+# In[18]:
 
 
-database_file_name = 'DatasSink.sqlite'
+database_file_name = 'DataSink.sqlite'
 
-create_sqlite_database_in_current_dir(database_file_name)
+save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
 
-save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///{database_file_name}')
-
-read_from_sqlite('Dataset', db_url=f'sqlite:///{database_file_name}')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
+read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
 
