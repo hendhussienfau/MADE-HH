@@ -6,16 +6,17 @@
 
 import pytest
 import pandas as pd
-from Pipeline import (
-    read_csv,
-    extractblock,
-    transform_train_trips,
-    transform_tourism_ghg,
-    transform_nights_spent,
-    integrate_data,
-    save_to_sqlite,
-    read_from_sqlite,
-)
+import Pipeline
+# from Pipeline import (
+#    read_csv,
+#   extractblock,
+#  transform_train_trips,
+#    transform_tourism_ghg,
+#    transform_nights_spent,
+#    integrate_data,
+#    save_to_sqlite,
+#    read_from_sqlite,
+#)
 
 
 # In[2]:
