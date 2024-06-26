@@ -196,7 +196,7 @@ print(merged_data)
 # In[16]:
 
 
-def save_to_sqlite(df, table_name , db_url='sqlite:///../data/datasink.sqlite'):
+def save_to_sqlite(df, table_name , db_url='sqlite:///../data/DataSink.sqlite'):
     df.to_sql(table_name, db_url, if_exists='replace', index=False) 
 
 
@@ -205,7 +205,7 @@ def save_to_sqlite(df, table_name , db_url='sqlite:///../data/datasink.sqlite'):
 
 from tabulate import tabulate
 
-def read_from_sqlite(table_name, db_url='sqlite:///../data/datasink.sqlite'):
+def read_from_sqlite(table_name, db_url='sqlite:///../data/DataSink.sqlite'):
     df = pd.read_sql_table(table_name, db_url)
     print(tabulate(df, headers='keys', tablefmt='pretty'))
 
