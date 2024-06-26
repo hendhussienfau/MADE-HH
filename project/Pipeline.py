@@ -197,10 +197,8 @@ print(merged_data)
 from sqlalchemy import create_engine
 
 
-def save_to_sqlite(df, table_name , db_url=f'sqlite:///../data/DataSink.sqlite'):
-    engine = create_engine(db_url)
-    df.to_sql(table_name, con=engine, if_exists='replace', index=False)
-    engine.dispose()
+def save_to_sqlite(df, table_name , db_url='sqlite:///../data/DataSink.sqlite'):
+    df.to_sql(table_name, db_url, if_exists='replace', index=False)
 
 
 # In[17]:
@@ -208,12 +206,9 @@ def save_to_sqlite(df, table_name , db_url=f'sqlite:///../data/DataSink.sqlite')
 
 from tabulate import tabulate
 
-def read_from_sqlite(table_name, db_url=f'sqlite:///../data/DataSink.sqlite'):
-    engine = create_engine(db_url)
-    df = pd.read_sql_table(table_name, con=engine)
+def read_from_sqlite(table_name, db_url='sqlite:///../data/DataSink.sqlite'):
+    df = pd.read_sql_table(table_name, db_url)
     print(tabulate(df, headers='keys', tablefmt='pretty'))
-    engine.dispose()
-
 
 
 # In[18]:
