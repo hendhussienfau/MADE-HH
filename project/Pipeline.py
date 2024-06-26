@@ -198,9 +198,9 @@ from sqlalchemy import create_engine
 
 
 def save_to_sqlite(df, table_name , db_url='sqlite:///../data/DataSink.sqlite'):
-    df.to_sql(table_name, db_url, if_exists='replace', index=False)
-
-
+    sql_engine = sql.create_engine(db_url)
+    df.to_sql(table_name, sql_engine, if_exists='replace', index=False)
+    
 # In[17]:
 
 
