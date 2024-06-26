@@ -48,7 +48,7 @@ block ZipArchiveInterpreter oftype ArchiveInterpreter {
 
 constraint CoordinationConstraint oftype RangeConstraint{
     lowerBound: -90;
-    upperBound: 90;
+    upperBound: 91;
 }
 constraint IDConstraint oftype AllowlistConstraint{
    allowlist: [ "1645" ];
