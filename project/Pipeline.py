@@ -7,7 +7,7 @@
 #imports
 import pandas as pd
 import sqlite3
-
+import sqlalchemy as sql
 
 # In[2]:
 
