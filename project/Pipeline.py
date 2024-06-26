@@ -216,7 +216,9 @@ def read_from_sqlite(table_name, db_url):
 
 database_file_name = 'DataSink.sqlite'
 
-save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+# save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+save_to_sqlite(merged_data, 'Dataset', db_url='sqlite:///../data/DataSink.sqlite')
 
-read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+# read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+read_from_sqlite('Dataset', db_url='sqlite:///../data/DataSink.sqlite')
 
