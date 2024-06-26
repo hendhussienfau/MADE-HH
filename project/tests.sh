@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 pipeline_test.py
+python3 ./project/pipeline_test.py
