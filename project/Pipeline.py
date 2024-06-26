@@ -194,10 +194,13 @@ print(merged_data)
 
 
 # In[16]:
+from sqlalchemy import create_engine
 
 
 def save_to_sqlite(df, table_name , db_url=f'sqlite:///../data/DataSink.sqlite'):
-    df.to_sql(table_name, db_url, if_exists='replace', index=False) 
+    engine = create_engine(db_url)
+    df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+    engine.dispose()
 
 
 # In[17]:
@@ -206,8 +209,10 @@ def save_to_sqlite(df, table_name , db_url=f'sqlite:///../data/DataSink.sqlite')
 from tabulate import tabulate
 
 def read_from_sqlite(table_name, db_url=f'sqlite:///../data/DataSink.sqlite'):
-    df = pd.read_sql_table(table_name, db_url)
+    engine = create_engine(db_url)
+    df = pd.read_sql_table(table_name, con=engine)
     print(tabulate(df, headers='keys', tablefmt='pretty'))
+    engine.dispose()
 
 
 
