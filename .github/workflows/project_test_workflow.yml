@@ -3,7 +3,7 @@ run-name: Project automated test triggered by ${{ github.actor }}  🚀
 on:
   push:
     paths:
-      - 'Project/**'
+      - 'project/**'
 jobs:
   Run-Tests:
     runs-on: ubuntu-latest
