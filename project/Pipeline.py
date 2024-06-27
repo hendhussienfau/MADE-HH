@@ -218,7 +218,7 @@ def read_from_sqlite(table_name, db_url):
 # In[18]:
 
 
-db_directory = '../data_test'
+db_directory = '../data'
 if not os.path.exists(db_directory):
     os.makedirs(db_directory)
 
