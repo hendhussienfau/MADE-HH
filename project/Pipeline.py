@@ -7,6 +7,8 @@
 #imports
 import pandas as pd
 import sqlite3
+import os
+from sqlalchemy import create_engine
 
 
 # In[2]:
@@ -196,8 +198,10 @@ print(merged_data)
 # In[16]:
 
 
-def save_to_sqlite(df, table_name , db_url):
-    df.to_sql(table_name, db_url, if_exists='replace', index=False) 
+def save_to_sqlite(df, table_name, db_url='sqlite:///../data_test/DataSink.sqlite'):
+    engine = create_engine(db_url)
+    df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+    engine.dispose()
 
 
 # In[17]:
@@ -214,9 +218,29 @@ def read_from_sqlite(table_name, db_url):
 # In[18]:
 
 
+db_directory = '../data_test'
+if not os.path.exists(db_directory):
+    os.makedirs(db_directory)
+
+
+# In[19]:
+
+
 database_file_name = 'DataSink.sqlite'
 
-save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+save_to_sqlite(merged_data, 'DataSink', db_url=f'sqlite:///../data_test/{database_file_name}')
 
-read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
+read_from_sqlite('DataSink', db_url=f'sqlite:///../data_test/{database_file_name}')
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
