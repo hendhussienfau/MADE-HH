@@ -4,6 +4,7 @@ pipeline GHGfsPipeline {
     // file. Each csv file in this zip is further processed 
     // by its own sequence of blocks and pipes.
 
+
     GHGTourExtractor
         -> GHGTourTextFileInterpreter
         -> GHGTourCSVInterpreter
