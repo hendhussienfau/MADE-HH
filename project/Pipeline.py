@@ -7,7 +7,7 @@
 #imports
 import pandas as pd
 import sqlite3
-import sqlalchemy as sql
+
 
 # In[2]:
 
@@ -194,21 +194,21 @@ print(merged_data)
 
 
 # In[16]:
-from sqlalchemy import create_engine
 
 
-def save_to_sqlite(df, table_name , db_url='sqlite:///../data/DataSink.sqlite'):
-    sql_engine = sql.create_engine(db_url)
-    df.to_sql(table_name, sql_engine, if_exists='replace', index=False)
-    
+def save_to_sqlite(df, table_name , db_url):
+    df.to_sql(table_name, db_url, if_exists='replace', index=False) 
+
+
 # In[17]:
 
 
 from tabulate import tabulate
 
-def read_from_sqlite(table_name, db_url='sqlite:///../data/DataSink.sqlite'):
+def read_from_sqlite(table_name, db_url):
     df = pd.read_sql_table(table_name, db_url)
     print(tabulate(df, headers='keys', tablefmt='pretty'))
+
 
 
 # In[18]:
@@ -216,9 +216,7 @@ def read_from_sqlite(table_name, db_url='sqlite:///../data/DataSink.sqlite'):
 
 database_file_name = 'DataSink.sqlite'
 
-# save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
-save_to_sqlite(merged_data, 'Dataset')
+save_to_sqlite(merged_data, 'Dataset', db_url=f'sqlite:///../data/{database_file_name}')
 
-# read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
-read_from_sqlite('Dataset')
+read_from_sqlite('Dataset', db_url=f'sqlite:///../data/{database_file_name}')
 
