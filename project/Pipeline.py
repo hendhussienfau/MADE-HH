@@ -198,7 +198,7 @@ print(merged_data)
 # In[16]:
 
 
-def save_to_sqlite(df, table_name, db_url='sqlite:///../data_test/DataSink.sqlite'):
+def save_to_sqlite(df, table_name, db_url='sqlite:///../data/DataSink.sqlite'):
     engine = create_engine(db_url)
     df.to_sql(table_name, con=engine, if_exists='replace', index=False)
     engine.dispose()
@@ -228,9 +228,9 @@ if not os.path.exists(db_directory):
 
 database_file_name = 'DataSink.sqlite'
 
-save_to_sqlite(merged_data, 'DataSink', db_url=f'sqlite:///../data_test/{database_file_name}')
+save_to_sqlite(merged_data, 'DataSink', db_url=f'sqlite:///../data/{database_file_name}')
 
-read_from_sqlite('DataSink', db_url=f'sqlite:///../data_test/{database_file_name}')
+read_from_sqlite('DataSink', db_url=f'sqlite:///../data/{database_file_name}')
 
 
 # In[ ]:
