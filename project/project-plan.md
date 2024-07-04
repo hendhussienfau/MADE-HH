@@ -44,6 +44,8 @@ This dataset provides information on the total number of nights spent at tourist
 
 1. Collection of data sources and evaluating data quality [https://github.com/hendhussienfau/MADE-HH/issues/1]
 2. Extraction of data into Jayvee pipeline [https://github.com/hendhussienfau/MADE-HH/issues/2]
-3. Cleaning and transfroming the data
-4. Analyzing
+3. Cleaning and transfroming the data [[https://github.com/hendhussienfau/MADE-HH/issues/3#issue-2390593117](https://github.com/hendhussienfau/MADE-HH/issues/3)]
+4. Integrating data and creating derived data [https://github.com/hendhussienfau/MADE-HH/issues/4]
+5. saving the pipeline output to database [https://github.com/hendhussienfau/MADE-HH/issues/5]
+6. Analyzing the output data [https://github.com/hendhussienfau/MADE-HH/issues/6]
 
