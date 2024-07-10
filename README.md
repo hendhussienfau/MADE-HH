@@ -23,5 +23,15 @@ Python was the primary technology used to implement this pipeline using data pro
 •Data Transformation: the data underwent transformation steps to prepare it for analysis. It included filtering out specific rows based on criteria and transposing some data columns to fit the next pipeline blocks. 
 •Integration: the transformed datasets were combined using inner joins based on common keys such as territory ID and year. This integration allowed for the creation of a unified dataset for further analysis.
 •Loading: Finally, the integrated dataset was loaded into an SQLite table to as a final sink which allows for retrieval and sharing of the dataset for future usage.
+## License
+Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
+This work is licensed under a
+[Creative Commons Attribution 4.0 International License][cc-by].
+
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
