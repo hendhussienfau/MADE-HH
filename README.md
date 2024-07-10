@@ -4,7 +4,7 @@
 How does the utilization of trains as mode of transportation within a tourism destination
 can influence the overall greenhouse gas intensity of the tourism sector within EU countries?
 
-## Motivation:
+## Motivation
 Tourism is a major economic driver in the European Union countries, contributing approximately 11% to employment, encompassing direct, indirect, and induced jobs in 2019 according to the estimates of the European Commission. However, the influx of tourism poses significant environmental challenges, particularly in terms of greenhouse gas (GHG) emissions which was estimated be the European Commission to be as high as 48 Tons of GHG emissions per Million Euro of Gross Value Added on average across the EU countries. As global awareness of climate change increases, the need for sustainable tourism practices has become more urgent. One critical aspect of this is the mode of transportation used by tourists within their destinations. Trains as a mode of transport, are known for their lower environmental impact compared to cars and airplanes. As part of the efforts the necessity to accelerate green transition in EU Tourism, the Council of the European defined the share of trips by train as one of the green pillars for this green transition, as it measures the relative importance of sustainable means of transportation within a tourism destination, approximated by the share of trips taken by train. Higher values indicate a more widespread use of the train compared to other modes of transport with a higher environmental impact. This report aims to address the research question: How does the utilization of trains as a mode of transportation within a tourism destination influence the overall greenhouse gas intensity of the tourism sector within EU countries? By doing so, it is examining the potential of train travel to reduce GHG emissions. 
 
 ## Data Sources
@@ -18,7 +18,7 @@ Source: [Joint Research Centre Data Catalogue - UDP - Nights spent - European Co
 (https://data.jrc.ec.europa.eu/dataset/4c16628c-1e56-45b3-af40-70dd82df5408)
 ## Data Pipeline
 ![Pipeline Graph](https://github.com/hendhussienfau/MADE-HH/assets/104495535/dc2d30e7-4ce5-4912-b268-d266a81e1c26)
-Python was the primary technology used to implement this pipeline using data processing functions from Panda library, while the SQLite database management system was used for loading into the data sink . The stages used in the pipeline are listed below and illustrated (Figure 2): 
+Python was the primary technology used to implement this pipeline using data processing functions from Panda library, while the SQLite database management system was used for loading into the data sink . The stages used in the pipeline are listed below: 
 •Data Collection: Data was collected from three CSV files using http links from the Joint Research Centre Data Catalogue. These sources included information on train trips, tourism greenhouse gas intensity, and nights spent at tourist accommodations.
 •Data Transformation: the data underwent transformation steps to prepare it for analysis. It included filtering out specific rows based on criteria and transposing some data columns to fit the next pipeline blocks. 
 •Integration: the transformed datasets were combined using inner joins based on common keys such as territory ID and year. This integration allowed for the creation of a unified dataset for further analysis.
