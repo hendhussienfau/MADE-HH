@@ -1,5 +1,5 @@
 # The Relationship Between Train Usage and Greenhouse Gas Emissions in EU Tourism Ecosystems
-
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 ## Research Question
 How does the utilization of trains as mode of transportation within a tourism destination
 can influence the overall greenhouse gas intensity of the tourism sector within EU countries?
